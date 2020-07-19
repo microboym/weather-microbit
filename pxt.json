@@ -7,7 +7,8 @@
     "files": [
         "main.ts",
         "README.md",
-        "display.ts"
+        "display.ts",
+        "data.ts"
     ],
     "testFiles": [
         "test.ts"

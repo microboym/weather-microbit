@@ -33,6 +33,30 @@ class display {
     }
 }
 
+// Weather displays the weather data on screen
+class weather implements animation {
+    status: boolean
+    data: data.weather
+
+    constructor(data: data.weather) { this.data = data }
+
+    show(): void {
+        let kind = ""
+        switch (this.data.kind) {
+            case data.wkind.Sunny:
+                kind = "Sunny"; break
+            case data.wkind.Windy:
+                kind = "Windy"; break
+            case data.wkind.Rainy:
+                kind = "Rainy"; break
+        }
+        let show_string:string = kind + ' ' + this.data.temperature1 + '~' + this.data.temperature2
+        basic.showString(show_string, 120)
+    }
+
+    stop() { this.status = false }
+}
+
 // Spinning is an animation for loading
 class spinning implements animation {
     status: boolean
