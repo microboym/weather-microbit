@@ -12,18 +12,24 @@ class display {
     private static current: animation = null
 
     static show(animation: animation): void {
-        if (this.current) {
-            this.current.stop()
-        }
-        basic.clearScreen()
+        this.stop()
         this.current = animation
-        
         control.inBackground(function () {
             display.current.show()
         })
     }
+
+    static stop() {
+        if (this.current) {
+            this.current.stop()
+        }
+        basic.clearScreen()
+        led.stopAnimation()
+        this.current = null
+    }
+
     static status(): Boolean {
-        return this.current.status
+        return this.current ? this.current.status : false
     }
 }
 
