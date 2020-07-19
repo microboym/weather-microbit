@@ -2,12 +2,12 @@
     "name": "weather",
     "description": "",
     "dependencies": {
-        "core": "*",
-        "radio": "*"
+        "core": "*"
     },
     "files": [
         "main.ts",
-        "README.md"
+        "README.md",
+        "display.ts"
     ],
     "testFiles": [
         "test.ts"
