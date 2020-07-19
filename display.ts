@@ -2,7 +2,7 @@
 
 // Animations should implements the animation interface
 interface animation {
-    status: Boolean
+    status: boolean
     show: () => void
     stop: () => void
 }
@@ -28,14 +28,14 @@ class display {
         this.current = null
     }
 
-    static status(): Boolean {
+    static status(): boolean {
         return this.current ? this.current.status : false
     }
 }
 
 // Spinning is an animation for loading
 class spinning implements animation {
-    status: Boolean
+    status: boolean
 
     show(): void {
         if (!this.status) {
@@ -57,7 +57,7 @@ class spinning implements animation {
 
 // Success is an animation when an action's done successful
 class success implements animation {
-    status: Boolean
+    status: boolean
 
     show(): void {
         if (!this.status) {
