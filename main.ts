@@ -1,12 +1,12 @@
 // Serial initialization
 serial.redirectToUSB()
 serial.setBaudRate(BaudRate.BaudRate9600)
-display.show(new spinning) // loading animation
+display.show(new display.spinning) // loading animation
 
 serial.onDataReceived(serial.delimiters(Delimiters.Fullstop), function () {
     let data = serial.readUntil(serial.delimiters(Delimiters.Fullstop))
     if (data == "Connect") {
-        display.show(new success)
+        display.show(new display.success)
         serial.writeLine("Connect successful")
     } else if (data.substr(0, 7) == "Weather") {
         display.stop()
@@ -20,6 +20,6 @@ serial.onDataReceived(serial.delimiters(Delimiters.Fullstop), function () {
 
 input.onButtonPressed(Button.A, function () {
     let data = test_data
-    display.show(new weather(data))
+    display.show(new display.weather(data))
     serial.writeValue("x", 0)
 })
