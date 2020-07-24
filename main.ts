@@ -9,7 +9,7 @@ serial.onDataReceived(serial.delimiters(Delimiters.Fullstop), function () {
         display.show(new display.success)
         serial.writeLine("Connect successful")
     } else if (msg.substr(0, 7) == "Weather") {
-        data.decode(msg)
+        data.load(msg)
     } else {
         display.stop()
         basic.showString("Unknow:" + msg + " len=" + msg.length, 75)
