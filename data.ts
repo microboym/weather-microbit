@@ -22,7 +22,8 @@ namespace data {
     }
 
     export function decode (data: string): weather {
-        // data format: kind-temperature1-temperature2
+        // data format: Weather: kind-temperature1-temperature2
+        data = data.substr(9)
         let kind: wkind = parseInt(data[0])
         let i
         for (i = 2; data[i] != '-'; i++);

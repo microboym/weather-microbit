@@ -9,8 +9,7 @@ serial.onDataReceived(serial.delimiters(Delimiters.Fullstop), function () {
         display.show(new display.success)
         serial.writeLine("Connect successful")
     } else if (msg.substr(0, 7) == "Weather") {
-        let d = msg.substr(9)
-        data.decode(d)
+        data.decode(msg)
     } else {
         display.stop()
         basic.showString("Unknow:" + msg + " len=" + msg.length, 75)
