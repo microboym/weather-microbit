@@ -1,24 +1,27 @@
-// Serial initialization
 serial.redirectToUSB()
-serial.setBaudRate(BaudRate.BaudRate9600)
+let connected = false
 display.show(new display.spinning) // loading animation
+    
 
-serial.onDataReceived(serial.delimiters(Delimiters.Fullstop), function () {
-    let msg = serial.readUntil(serial.delimiters(Delimiters.Fullstop))
-    if (msg == "Connect") {
+serial.onDataReceived(serial.delimiters(Delimiters.Hash), function () {
+    let msg = serial.readUntil(serial.delimiters(Delimiters.Hash))
+    if (!connected) {
+        connected = true
         display.show(new display.success)
-        serial.writeLine("Connect successful")
-    } else if (msg.substr(0, 7) == "Weather") {
-        data.load(msg)
-    } else {
-        display.stop()
-        basic.showString("Unknow:" + msg + " len=" + msg.length, 75)
-        // basic.showString("substr:" + data.substr(0, 7) + " len=" + data.substr(0, 7).length, 75)
+        if (msg == "Connect")
+            console.log("Connect successful")
+    }
+    else if (msg.includes(":")) {
+        let m = msg.split(":")
+        let id = m[0]
+        let parameter = m[1]
+        console.log("Running gesture: " + id)
+        data.store.load(parameter)
     }
 })
 
 input.onButtonPressed(Button.A, function () {
-    let data = test_data
-    display.show(new display.weather(data))
-    serial.writeValue("x", 0)
+    serial.writeLine("Request")
+    basic.pause(7000)
+    display.show(new display.weather(data.store.data))
 })

@@ -42,8 +42,8 @@ namespace display {
             switch (this.data.kind) {
                 case data.wkind.Sunny:
                     kind = "Sunny"; break
-                case data.wkind.Windy:
-                    kind = "Windy"; break
+                case data.wkind.Cloudy:
+                    kind = "Cloudy"; break
                 case data.wkind.Rainy:
                     kind = "Rainy"; break
             }
